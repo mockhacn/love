@@ -18,15 +18,17 @@
       --text-muted: #888888;
       --border: #f0e6e0;
       --highlight: rgba(255, 182, 193, 0.45);
+      --kakao-yellow: #FEE500;
+      --kakao-bg: #BACEE0;
     }
 
     * { 
       box-sizing: border-box; 
       margin: 0; 
       padding: 0; 
-      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif; 
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
     }
-    body { background-color: var(--bg-color); color: var(--text); padding: 12px; max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
+    body { background-color: var(--bg-color); color: var(--text); padding: 12px; max-width: 480px; margin: 0 auto; padding-bottom: 60px; }
 
     header { text-align: center; margin: 16px 0 12px; }
     header h1 { font-size: 1.25rem; color: #ff6b6b; font-weight: 700; }
@@ -59,7 +61,8 @@
     .detail-header { font-size: 1rem; font-weight: bold; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
     /* Full Day Summary Text */
-    .full-text-box { background: #fffdf9; border: 1px solid #f2e2c9; border-radius: 10px; padding: 12px; font-size: 0.85rem; color: #444; line-height: 1.5; margin-bottom: 16px; white-space: pre-wrap; font-family: "Pretendard", sans-serif; }
+    .full-text-box { background: #fffdf9; border: 1px solid #f2e2c9; border-radius: 10px; padding: 12px; font-size: 0.85rem; color: #444; line-height: 1.6; margin-bottom: 16px; white-space: pre-wrap; }
+    .time-bold { font-weight: 700; color: #111; }
 
     /* Schedule List */
     .schedule-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
@@ -68,7 +71,8 @@
     .schedule-memo { font-size: 0.82rem; color: #555; background: #ffffff; padding: 8px; border-radius: 6px; margin: 6px 0 4px; border: 1px solid #eee; white-space: pre-wrap; line-height: 1.35; }
     
     .map-link { display: inline-flex; align-items: center; gap: 3px; color: #2b6cb0; background: #ebf8ff; padding: 3px 8px; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 600; margin-top: 4px; }
-    
+    .map-link.naver { color: #03c75a; background: #e8f9f0; }
+
     .check-container { display: flex; align-items: center; font-size: 0.78rem; color: var(--text-muted); gap: 6px; margin-top: 6px; }
     .check-container input[type="checkbox"] { accent-color: var(--primary); }
 
@@ -77,13 +81,29 @@
     .add-form h4 { font-size: 0.85rem; color: var(--primary); margin-bottom: 8px; }
     .form-group { margin-bottom: 8px; }
     .form-group label { display: block; font-size: 0.75rem; color: #666; margin-bottom: 2px; }
-    .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; outline: none; background: #fff; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; outline: none; background: #fff; }
     .form-group textarea { resize: vertical; height: 50px; }
 
     .time-picker-group { display: flex; align-items: center; gap: 6px; }
     .time-picker-group input[type="time"] { flex: 1; text-align: center; }
 
-    /* Modal for Trip */
+    /* Kakao Chat Modal & Feedback */
+    .feedback-btn-wrapper { margin-top: 20px; text-align: center; }
+    .feedback-btn { background: #3c1e1e; color: #FEE500; border: none; padding: 10px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; width: 100%; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+
+    .chat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
+    .chat-modal.active { display: flex; }
+    .chat-container { background: var(--kakao-bg); width: 100%; max-width: 420px; height: 80vh; border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; }
+    .chat-header { background: #a9bdce; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 0.95rem; color: #333; }
+    .chat-body { flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .chat-bubble-wrap { display: flex; flex-direction: column; align-items: flex-end; }
+    .chat-bubble { background: var(--kakao-yellow); padding: 8px 12px; border-radius: 12px 0px 12px 12px; font-size: 0.85rem; color: #000; max-width: 80%; word-break: break-all; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .chat-time { font-size: 0.65rem; color: #666; margin-top: 2px; margin-right: 2px; }
+    .chat-footer { background: #fff; padding: 8px; display: flex; gap: 6px; }
+    .chat-footer input { flex: 1; border: 1px solid #ddd; padding: 8px 12px; border-radius: 16px; font-size: 0.85rem; outline: none; }
+    .chat-footer button { background: var(--kakao-yellow); border: none; padding: 8px 14px; border-radius: 16px; font-weight: bold; font-size: 0.8rem; cursor: pointer; color: #3c1e1e; }
+
+    /* General Modal */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); justify-content: center; align-items: center; z-index: 1000; }
     .modal.active { display: flex; }
     .modal-content { background: white; width: 90%; max-width: 400px; border-radius: 16px; padding: 20px; }
@@ -119,15 +139,16 @@
       <span id="selected-date-title">일정을 선택해주세요</span>
     </div>
 
-    <!-- 1. 일정 전체 텍스트 요약 -->
+    <!-- 1. 일정 전체 텍스트 요약 (시간 볼드) -->
     <div class="full-text-box" id="full-text-summary">등록된 일정이 없습니다.</div>
 
     <!-- 2. 선택한 날짜의 상세 일정 카드리스트 -->
     <div class="schedule-list" id="schedule-list"></div>
 
-    <!-- 3. 일정 추가 폼 -->
+    <!-- 3. 일정 추가/수정 폼 -->
     <div class="add-form">
-      <h4>+ 새 일정 추가하기</h4>
+      <h4 id="form-title">+ 새 일정 추가하기</h4>
+      <input type="hidden" id="edit-index" value="-1">
       <div class="form-group">
         <label>시간 선택</label>
         <div class="time-picker-group">
@@ -141,8 +162,14 @@
         <input type="text" id="input-title" placeholder="예: 준비 및 식사, sause 이동 등">
       </div>
       <div class="form-group">
-        <label>장소 검색명 (선택)</label>
-        <input type="text" id="input-location" placeholder="예: 아케이드 토오베 (입력시 구글맵 버튼 생성)">
+        <label>지도 종류 & 장소명</label>
+        <div style="display: flex; gap: 6px;">
+          <select id="input-map-type" style="width: 110px;">
+            <option value="google">구글 지도</option>
+            <option value="naver">네이버 지도</option>
+          </select>
+          <input type="text" id="input-location" placeholder="장소 검색명 (예: 아케이드 토오베)">
+        </div>
       </div>
       <div class="form-group">
         <label>세부 메모 (선택)</label>
@@ -152,7 +179,15 @@
         <input type="checkbox" id="input-needs-booking" style="width: auto;">
         <label for="input-needs-booking" style="font-size: 0.8rem; color: #666; cursor: pointer; margin: 0;">예약 필요 항목 (체크박스 생성)</label>
       </div>
-      <button class="action-btn" style="width: 100%; padding: 8px; margin-top: 6px;" onclick="saveSchedule()">일정 등록</button>
+      <div style="display: flex; gap: 6px; margin-top: 6px;">
+        <button class="action-btn" style="flex:1; padding: 8px;" id="btn-save-schedule" onclick="saveSchedule()">일정 등록</button>
+        <button class="action-btn" style="background:#888; display:none;" id="btn-cancel-edit" onclick="resetForm()">취소</button>
+      </div>
+    </div>
+
+    <!-- 4. 면지에게 건의사항 버튼 -->
+    <div class="feedback-btn-wrapper">
+      <button class="feedback-btn" onclick="openChatModal()">💬 면지에게 건의사항 남기기</button>
     </div>
   </div>
 
@@ -179,27 +214,44 @@
     </div>
   </div>
 
+  <!-- 카카오톡 스타일 건의사항 모달 -->
+  <div class="chat-modal" id="chat-modal">
+    <div class="chat-container">
+      <div class="chat-header">
+        <span>💌 면지에게 전달하는 건의함</span>
+        <button style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closeModal('chat-modal')">&times;</button>
+      </div>
+      <div class="chat-body" id="chat-body"></div>
+      <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="건의 및 문의사항을 입력하세요..." onkeypress="if(event.key==='Enter') sendFeedback()">
+        <button onclick="sendFeedback()">전송</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
     let currentDate = new Date();
     let selectedDateStr = "";
 
-    // LocalStorage 저장소 초기화 및 기본 샘플 데이터
+    // LocalStorage 초기화
     let schedules = JSON.parse(localStorage.getItem("couple_schedules")) || {
       "2026-08-17": [
-        { startTime: "09:20", endTime: "11:20", title: "준비 및 식사", location: "", memo: "", needsBooking: false, booked: false },
-        { startTime: "11:20", endTime: "12:10", title: "샵 이동", location: "", memo: "면지는 호지 약 받고 16:15까지 sause에서 포장하기(커리, 토마토, 오리지널 중 택2)", needsBooking: false, booked: false },
-        { startTime: "15:30", endTime: "16:15", title: "sause 이동(대중교통)", location: "sause", memo: "", needsBooking: false, booked: false },
-        { startTime: "16:15", endTime: "17:30", title: "청계천 산책 및 식사하면서 아케이드 토오베까지 이동", location: "청계천", memo: "", needsBooking: false, booked: false },
-        { startTime: "17:30", endTime: "19:00", title: "카페", location: "아케이드 토오베", memo: "", needsBooking: true, booked: true },
-        { startTime: "19:00", endTime: "19:50", title: "귀가(대중교통)", location: "", memo: "", needsBooking: false, booked: false }
+        { startTime: "09:20", endTime: "11:20", title: "준비 및 식사", mapType: "google", location: "", memo: "", needsBooking: false, booked: false },
+        { startTime: "11:20", endTime: "12:10", title: "샵 이동", mapType: "google", location: "", memo: "면지는 호지 약 받고 16:15까지 sause에서 포장하기(커리, 토마토, 오리지널 중 택2)", needsBooking: false, booked: false },
+        { startTime: "15:30", endTime: "16:15", title: "sause 이동(대중교통)", mapType: "naver", location: "sause", memo: "", needsBooking: false, booked: false },
+        { startTime: "16:15", endTime: "17:30", title: "청계천 산책 및 식사하면서 아케이드 토오베까지 이동", mapType: "naver", location: "청계천", memo: "", needsBooking: false, booked: false },
+        { startTime: "17:30", endTime: "19:00", title: "카페", mapType: "google", location: "아케이드 토오베", memo: "", needsBooking: true, booked: true },
+        { startTime: "19:00", endTime: "19:50", title: "귀가(대중교통)", mapType: "google", location: "", memo: "", needsBooking: false, booked: false }
       ]
     };
     let trips = JSON.parse(localStorage.getItem("couple_trips")) || [];
+    let feedbacks = JSON.parse(localStorage.getItem("couple_feedbacks")) || [];
 
     function saveData() {
       localStorage.setItem("couple_schedules", JSON.stringify(schedules));
       localStorage.setItem("couple_trips", JSON.stringify(trips));
+      localStorage.setItem("couple_feedbacks", JSON.stringify(feedbacks));
       renderCalendar();
     }
 
@@ -227,7 +279,6 @@
       const daysContainer = document.getElementById("calendar-days");
       daysContainer.innerHTML = "";
 
-      // 이전 달 빈 칸
       for (let i = firstDay - 1; i >= 0; i--) {
         const cell = document.createElement("div");
         cell.className = "day-cell other-month";
@@ -235,7 +286,6 @@
         daysContainer.appendChild(cell);
       }
 
-      // 이번 달 날짜들
       const today = new Date();
       for (let d = 1; d <= lastDate; d++) {
         const dateObj = new Date(year, month, d);
@@ -254,7 +304,6 @@
 
         cell.innerHTML = `<span class="date-num">${d}</span>`;
 
-        // 여행 형광펜 체크
         trips.forEach(trip => {
           if (dateStr >= trip.start && dateStr <= trip.end) {
             const tripTag = document.createElement("div");
@@ -264,7 +313,6 @@
           }
         });
 
-        // 일정 도트 표시
         if (schedules[dateStr] && schedules[dateStr].length > 0) {
           const dot = document.createElement("div");
           dot.className = "event-dot";
@@ -285,6 +333,7 @@
       const [y, m, d] = dateStr.split("-");
       document.getElementById("selected-date-title").innerText = `${parseInt(m)}/${parseInt(d)}(${dayNames[dayOfWeek]})`;
 
+      resetForm();
       renderSchedulesList();
     }
 
@@ -296,32 +345,38 @@
       let dayData = schedules[selectedDateStr] || [];
 
       if (dayData.length === 0) {
-        summaryTextEl.innerText = "등록된 일정이 없습니다.";
+        summaryTextEl.innerHTML = "등록된 일정이 없습니다.";
         listContainer.innerHTML = `<p style="font-size:0.83rem; color:#999; text-align:center; padding: 12px 0;">등록된 일정이 없습니다.</p>`;
         return;
       }
 
-      // **시작 시간 기준 오름차순 자동 정렬**
+      // 오름차순 시간 정렬
       dayData.sort((a, b) => a.startTime.localeCompare(b.startTime));
 
-      // 1. 맨 위 전체 텍스트 요약 출력
-      let fullText = "";
+      // 1. 상단 요약 텍스트 (시간 부분 볼드 처리)
+      let summaryHtml = "";
       dayData.forEach(item => {
-        const timeText = `${item.startTime}-${item.endTime} | ${item.title}`;
-        fullText += timeText + "\n";
-        if (item.memo) fullText += item.memo + "\n";
+        summaryHtml += `<span class="time-bold">${item.startTime}-${item.endTime}</span> | ${item.title}<br>`;
+        if (item.memo) summaryHtml += `${item.memo}<br>`;
       });
-      summaryTextEl.innerText = fullText.trim();
+      summaryTextEl.innerHTML = summaryHtml;
 
-      // 2. 개별 카드 리스트 출력
+      // 2. 카드리스트 출력
       dayData.forEach((item, index) => {
         const el = document.createElement("div");
         el.className = "schedule-item";
 
+        // 지도 링크 (구글 vs 네이버 선택)
         let mapButtonHtml = "";
         if (item.location) {
           const encodedLoc = encodeURIComponent(item.location);
-          mapButtonHtml = `<a href="https://www.google.com/maps/search/?api=1&query=${encodedLoc}" target="_blank" class="map-link">📍 ${item.location} 지도보기</a>`;
+          if (item.mapType === "naver") {
+            const naverUrl = `https://m.map.naver.com/search2/search.naver?query=${encodedLoc}`;
+            mapButtonHtml = `<a href="${naverUrl}" target="_blank" class="map-link naver">📍 네이버지도 ${item.location}</a>`;
+          } else {
+            const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodedLoc}`;
+            mapButtonHtml = `<a href="${googleUrl}" target="_blank" class="map-link">📍 구글지도 ${item.location}</a>`;
+          }
         }
 
         let bookingCheckHtml = "";
@@ -339,7 +394,10 @@
         el.innerHTML = `
           <div class="schedule-title">
             <span>${displayTime}</span>
-            <button style="background:none; border:none; color:#ff4d4d; font-size:0.75rem; cursor:pointer;" onclick="deleteSchedule(${index})">삭제</button>
+            <div>
+              <button style="background:none; border:none; color:#2b6cb0; font-size:0.75rem; cursor:pointer; margin-right:4px;" onclick="editSchedule(${index})">수정</button>
+              <button style="background:none; border:none; color:#ff4d4d; font-size:0.75rem; cursor:pointer;" onclick="deleteSchedule(${index})">삭제</button>
+            </div>
           </div>
           ${item.memo ? `<div class="schedule-memo">${item.memo}</div>` : ''}
           ${mapButtonHtml}
@@ -350,9 +408,11 @@
     }
 
     function saveSchedule() {
+      const editIdx = parseInt(document.getElementById("edit-index").value);
       const startTimeVal = document.getElementById("input-start-time").value;
       const endTimeVal = document.getElementById("input-end-time").value;
       const titleVal = document.getElementById("input-title").value.trim();
+      const mapTypeVal = document.getElementById("input-map-type").value;
       const locVal = document.getElementById("input-location").value.trim();
       const memoVal = document.getElementById("input-memo").value.trim();
       const needsBookingVal = document.getElementById("input-needs-booking").checked;
@@ -360,23 +420,55 @@
       if (!titleVal) return alert("일정 제목을 입력해주세요.");
 
       if (!schedules[selectedDateStr]) schedules[selectedDateStr] = [];
-      schedules[selectedDateStr].push({ 
+
+      const newItem = {
         startTime: startTimeVal,
         endTime: endTimeVal,
-        title: titleVal, 
+        title: titleVal,
+        mapType: mapTypeVal,
         location: locVal,
-        memo: memoVal, 
+        memo: memoVal,
         needsBooking: needsBookingVal,
-        booked: false 
-      });
+        booked: editIdx >= 0 ? schedules[selectedDateStr][editIdx].booked : false
+      };
 
+      if (editIdx >= 0) {
+        schedules[selectedDateStr][editIdx] = newItem;
+      } else {
+        schedules[selectedDateStr].push(newItem);
+      }
+
+      resetForm();
+      saveData();
+      renderSchedulesList();
+    }
+
+    function editSchedule(index) {
+      const item = schedules[selectedDateStr][index];
+      document.getElementById("edit-index").value = index;
+      document.getElementById("input-start-time").value = item.startTime;
+      document.getElementById("input-end-time").value = item.endTime;
+      document.getElementById("input-title").value = item.title;
+      document.getElementById("input-map-type").value = item.mapType || "google";
+      document.getElementById("input-location").value = item.location || "";
+      document.getElementById("input-memo").value = item.memo || "";
+      document.getElementById("input-needs-booking").checked = item.needsBooking || false;
+
+      document.getElementById("form-title").innerText = "✏️ 일정 수정하기";
+      document.getElementById("btn-save-schedule").innerText = "수정 완료";
+      document.getElementById("btn-cancel-edit").style.display = "block";
+    }
+
+    function resetForm() {
+      document.getElementById("edit-index").value = "-1";
       document.getElementById("input-title").value = "";
       document.getElementById("input-location").value = "";
       document.getElementById("input-memo").value = "";
       document.getElementById("input-needs-booking").checked = false;
 
-      saveData();
-      renderSchedulesList();
+      document.getElementById("form-title").innerText = "+ 새 일정 추가하기";
+      document.getElementById("btn-save-schedule").innerText = "일정 등록";
+      document.getElementById("btn-cancel-edit").style.display = "none";
     }
 
     function toggleBooked(index) {
@@ -389,6 +481,49 @@
       if (schedules[selectedDateStr].length === 0) delete schedules[selectedDateStr];
       saveData();
       renderSchedulesList();
+    }
+
+    /* 카카오톡 스타일 건의함 */
+    function openChatModal() {
+      renderChatBody();
+      document.getElementById("chat-modal").classList.add("active");
+    }
+
+    function renderChatBody() {
+      const chatBody = document.getElementById("chat-body");
+      chatBody.innerHTML = "";
+
+      if (feedbacks.length === 0) {
+        chatBody.innerHTML = `<p style="font-size:0.75rem; color:#666; text-align:center; margin-top:20px;">면지에게 바라는 점이나 궁금한 점을 적어보세요!</p>`;
+        return;
+      }
+
+      feedbacks.forEach(fb => {
+        const bubbleWrap = document.createElement("div");
+        bubbleWrap.className = "chat-bubble-wrap";
+        bubbleWrap.innerHTML = `
+          <div class="chat-bubble">${fb.text}</div>
+          <div class="chat-time">${fb.time}</div>
+        `;
+        chatBody.appendChild(bubbleWrap);
+      });
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function sendFeedback() {
+      const input = document.getElementById("chat-input");
+      const text = input.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+
+      feedbacks.push({ text: text, time: timeStr });
+      input.value = "";
+
+      saveData();
+      renderChatBody();
     }
 
     function openTripModal() { document.getElementById("trip-modal").classList.add("active"); }
