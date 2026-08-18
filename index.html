@@ -22,18 +22,12 @@
       --kakao-bg: #BACEE0;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg-color); color: var(--text); padding: 12px; max-width: 480px; margin: 0 auto; padding-bottom: 60px; }
 
     header { text-align: center; margin: 16px 0 12px; }
     header h1 { font-size: 1.25rem; color: #ff6b6b; font-weight: 700; }
 
-    /* Controls */
     .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .nav-bar button { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text); padding: 4px 8px; }
     .current-month { font-weight: bold; font-size: 1.05rem; }
@@ -52,19 +46,16 @@
     
     .date-num { font-weight: 600; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 2px; }
 
-    /* Highlight Trip & Dot */
-    .trip-highlight { background-color: var(--highlight); width: 100%; font-size: 0.6rem; padding: 1px 3px; border-radius: 3px; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d63384; font-weight: bold; }
+    .trip-highlight { background-color: var(--highlight); width: 100%; font-size: 0.6rem; padding: 1px 3px; border-radius: 3px; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d63384; font-weight: bold; cursor: pointer; }
     .event-dot { width: 5px; height: 5px; background-color: var(--primary); border-radius: 50%; margin-top: 2px; align-self: center; }
 
     /* Detail Section */
     .detail-section { background: var(--card-bg); border-radius: 16px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid var(--border); }
     .detail-header { font-size: 1rem; font-weight: bold; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-    /* Full Day Summary Text */
     .full-text-box { background: #fffdf9; border: 1px solid #f2e2c9; border-radius: 10px; padding: 12px; font-size: 0.85rem; color: #444; line-height: 1.6; margin-bottom: 16px; white-space: pre-wrap; }
     .time-bold { font-weight: 700; color: #111; }
 
-    /* Schedule List */
     .schedule-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
     .schedule-item { background: #faf8f7; border-left: 4px solid var(--primary); border-radius: 6px; padding: 10px 12px; }
     .schedule-title { font-weight: 700; font-size: 0.9rem; color: #222; display: flex; justify-content: space-between; align-items: center; }
@@ -76,7 +67,6 @@
     .check-container { display: flex; align-items: center; font-size: 0.78rem; color: var(--text-muted); gap: 6px; margin-top: 6px; }
     .check-container input[type="checkbox"] { accent-color: var(--primary); }
 
-    /* Input Forms */
     .add-form { background: #fff5f5; border-radius: 12px; padding: 12px; border: 1px solid var(--primary-light); }
     .add-form h4 { font-size: 0.85rem; color: var(--primary); margin-bottom: 8px; }
     .form-group { margin-bottom: 8px; }
@@ -87,7 +77,6 @@
     .time-picker-group { display: flex; align-items: center; gap: 6px; }
     .time-picker-group input[type="time"] { flex: 1; text-align: center; }
 
-    /* Kakao Chat Modal & Feedback */
     .feedback-btn-wrapper { margin-top: 20px; text-align: center; }
     .feedback-btn { background: #3c1e1e; color: #FEE500; border: none; padding: 10px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; width: 100%; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
@@ -103,10 +92,21 @@
     .chat-footer input { flex: 1; border: 1px solid #ddd; padding: 8px 12px; border-radius: 16px; font-size: 0.85rem; outline: none; }
     .chat-footer button { background: var(--kakao-yellow); border: none; padding: 8px 14px; border-radius: 16px; font-weight: bold; font-size: 0.8rem; cursor: pointer; color: #3c1e1e; }
 
-    /* General Modal */
+    /* Modals */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); justify-content: center; align-items: center; z-index: 1000; }
     .modal.active { display: flex; }
-    .modal-content { background: white; width: 90%; max-width: 400px; border-radius: 16px; padding: 20px; }
+    .modal-content { background: white; width: 95%; max-width: 460px; border-radius: 16px; padding: 18px; max-height: 90vh; overflow-y: auto; }
+
+    /* Table Styles */
+    .trip-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.78rem; }
+    .trip-table th, .trip-table td { border: 1px solid #e2e8f0; padding: 6px 8px; text-align: center; }
+    .trip-table th { background-color: #f7fafc; color: #4a5568; font-weight: 600; }
+    .trip-table input[type="text"], .trip-table input[type="number"] { width: 100%; border: none; outline: none; background: transparent; font-size: 0.78rem; text-align: center; }
+    
+    .section-title { font-size: 0.9rem; font-weight: bold; color: var(--primary); margin: 16px 0 6px 0; display: flex; justify-content: space-between; align-items: center; }
+    .mini-btn { background: #e2e8f0; color: #4a5568; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; }
+    
+    .trip-list-item { display: flex; justify-content: space-between; align-items: center; background: #fff5f5; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--primary-light); }
   </style>
 </head>
 <body>
@@ -121,7 +121,8 @@
     <button id="next-month">&gt;</button>
   </div>
 
-  <div style="text-align: right; margin-bottom: 8px;">
+  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+    <button class="action-btn" style="background:#6c757d;" onclick="openTripListModal()">✈️ 여행 목록 / 상세관리</button>
     <button class="action-btn" onclick="openTripModal()">+ 여행(형광펜) 추가</button>
   </div>
 
@@ -133,19 +134,15 @@
     <div class="days" id="calendar-days"></div>
   </div>
 
-  <!-- 달력 하단 일정 상세 목록 -->
+  <!-- 상세 정보 -->
   <div class="detail-section">
     <div class="detail-header">
       <span id="selected-date-title">일정을 선택해주세요</span>
     </div>
 
-    <!-- 1. 일정 전체 텍스트 요약 -->
     <div class="full-text-box" id="full-text-summary">등록된 일정이 없습니다.</div>
-
-    <!-- 2. 선택한 날짜의 상세 일정 카드리스트 -->
     <div class="schedule-list" id="schedule-list"></div>
 
-    <!-- 3. 일정 추가/수정 폼 -->
     <div class="add-form">
       <h4 id="form-title">+ 새 일정 추가하기</h4>
       <input type="hidden" id="edit-index" value="-1">
@@ -185,13 +182,12 @@
       </div>
     </div>
 
-    <!-- 4. 면지에게 건의사항 버튼 -->
     <div class="feedback-btn-wrapper">
       <button class="feedback-btn" onclick="openChatModal()">💬 면지에게 건의사항 남기기</button>
     </div>
   </div>
 
-  <!-- 여행 등록 모달 -->
+  <!-- 여행 추가 모달 -->
   <div class="modal" id="trip-modal">
     <div class="modal-content">
       <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--primary);">여행/연속 일정 등록</h3>
@@ -214,7 +210,98 @@
     </div>
   </div>
 
-  <!-- 카카오톡 스타일 건의사항 모달 -->
+  <!-- 여행 목록 선택 모달 -->
+  <div class="modal" id="trip-list-modal">
+    <div class="modal-content">
+      <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--primary);">등록된 여행 목록</h3>
+      <div id="trip-items-container"></div>
+      <div style="text-align: right; margin-top: 12px;">
+        <button class="action-btn" style="background: #ccc;" onclick="closeModal('trip-list-modal')">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 여행 상세 관리 (가계부, 옷, 숙소, 준비물) 모달 -->
+  <div class="modal" id="trip-detail-modal">
+    <div class="modal-content">
+      <h3 id="trip-detail-title" style="font-size: 1.1rem; color: var(--primary); text-align: center; margin-bottom: 4px;"></h3>
+      <p id="trip-detail-dates" style="font-size: 0.75rem; color: #666; text-align: center; margin-bottom: 12px;"></p>
+
+      <!-- 1. 일차별 옷 코디 -->
+      <div class="section-title">👔 일차별 옷 코디</div>
+      <table class="trip-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">일차</th>
+            <th style="width: 37.5%;">면지</th>
+            <th style="width: 37.5%;">챈니</th>
+          </tr>
+        </thead>
+        <tbody id="outfit-tbody"></tbody>
+      </table>
+
+      <!-- 2. 숙소 기능 -->
+      <div class="section-title">
+        <span>🏨 숙소 정보</span>
+        <button class="mini-btn" onclick="addHotelRow()">+ 행 추가</button>
+      </div>
+      <table class="trip-table">
+        <thead>
+          <tr>
+            <th>숙소명</th>
+            <th>기간</th>
+            <th>가격</th>
+            <th>비고</th>
+            <th style="width: 30px;"></th>
+          </tr>
+        </thead>
+        <tbody id="hotel-tbody"></tbody>
+      </table>
+
+      <!-- 3. 가계부 -->
+      <div class="section-title">
+        <span>💰 여행 가계부</span>
+        <button class="mini-btn" onclick="addExpenseRow()">+ 행 추가</button>
+      </div>
+      <table class="trip-table">
+        <thead>
+          <tr>
+            <th style="width: 20px;">정산</th>
+            <th>항목</th>
+            <th>금액(원)</th>
+            <th style="width: 30px;"></th>
+          </tr>
+        </thead>
+        <tbody id="expense-tbody"></tbody>
+      </table>
+      <div style="text-align: right; font-size: 0.8rem; font-weight: bold; margin-top: 6px; color: #222;">
+        총 지출: <span id="total-expense" style="color: var(--primary);">0</span> 원
+      </div>
+
+      <!-- 4. 준비물 체크리스트 -->
+      <div class="section-title">
+        <span>🎒 준비물 체크리스트</span>
+        <button class="mini-btn" onclick="addPackingRow()">+ 행 추가</button>
+      </div>
+      <table class="trip-table">
+        <thead>
+          <tr>
+            <th style="width: 30px;">체크</th>
+            <th>준비물 항목</th>
+            <th style="width: 30px;"></th>
+          </tr>
+        </thead>
+        <tbody id="packing-tbody"></tbody>
+      </table>
+
+      <div style="display: flex; gap: 8px; margin-top: 16px;">
+        <button class="action-btn" style="flex:1; background: #6c757d;" onclick="closeModal('trip-detail-modal')">닫기</button>
+        <button class="action-btn" style="flex:1;" onclick="saveTripDetails()">저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 건의사항 모달 -->
   <div class="chat-modal" id="chat-modal">
     <div class="chat-container">
       <div class="chat-header">
@@ -229,7 +316,7 @@
     </div>
   </div>
 
-  <!-- Firebase Realtime Database SDK (Module 방식) -->
+  <!-- Firebase Realtime Database SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
     import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
@@ -255,8 +342,8 @@
     let schedules = {};
     let trips = [];
     let feedbacks = [];
+    let currentTripIndex = -1;
 
-    // Realtime DB 실시간 동기화 리스너
     onValue(ref(db, 'coupleData'), (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -264,7 +351,6 @@
         trips = data.trips || [];
         feedbacks = data.feedbacks || [];
       } else {
-        // 데이터가 아예 없는 초기 1회 실행시 샘플 데이터 세팅
         schedules = {
           "2026-08-17": [
             { startTime: "09:20", endTime: "11:20", title: "준비 및 식사", mapType: "google", location: "", memo: "", needsBooking: false, booked: false },
@@ -340,11 +426,15 @@
 
         cell.innerHTML = `<span class="date-num">${d}</span>`;
 
-        trips.forEach(trip => {
+        trips.forEach((trip, idx) => {
           if (dateStr >= trip.start && dateStr <= trip.end) {
             const tripTag = document.createElement("div");
             tripTag.className = "trip-highlight";
             tripTag.innerText = trip.title;
+            tripTag.onclick = (e) => {
+              e.stopPropagation();
+              openTripDetailModal(idx);
+            };
             cell.appendChild(tripTag);
           }
         });
@@ -437,7 +527,6 @@
         `;
         listContainer.appendChild(el);
 
-        // Event Listeners
         const chkEl = el.querySelector(`#chk-${index}`);
         if (chkEl) chkEl.onchange = () => toggleBooked(index);
         el.querySelector(`.btn-edit-${index}`).onclick = () => editSchedule(index);
@@ -519,7 +608,225 @@
       saveDataToFirebase();
     }
 
-    /* 건의함 모달 */
+    /* 여행 목록 & 상세 모달 관리 */
+    window.openTripModal = function() { document.getElementById("trip-modal").classList.add("active"); };
+    window.closeModal = function(id) { document.getElementById(id).classList.remove("active"); };
+
+    window.saveTrip = function() {
+      const title = document.getElementById("trip-title").value.trim();
+      const start = document.getElementById("trip-start").value;
+      const end = document.getElementById("trip-end").value;
+
+      if (!title || !start || !end) return alert("여행 정보 및 날짜를 모두 선택해주세요.");
+
+      trips.push({
+        title, start, end,
+        expenses: [],
+        outfits: {},
+        hotels: [],
+        packings: []
+      });
+
+      document.getElementById("trip-title").value = "";
+      closeModal("trip-modal");
+      saveDataToFirebase();
+    };
+
+    window.openTripListModal = function() {
+      const container = document.getElementById("trip-items-container");
+      container.innerHTML = "";
+
+      if (trips.length === 0) {
+        container.innerHTML = `<p style="font-size:0.85rem; color:#888; text-align:center;">등록된 여행이 없습니다.</p>`;
+      } else {
+        trips.forEach((trip, idx) => {
+          const item = document.createElement("div");
+          item.className = "trip-list-item";
+          item.innerHTML = `
+            <div>
+              <strong style="font-size:0.9rem; color:#222;">${trip.title}</strong>
+              <div style="font-size:0.75rem; color:#666;">${trip.start} ~ ${trip.end}</div>
+            </div>
+            <div>
+              <button class="mini-btn" style="background:var(--primary); color:white; margin-right:4px;" onclick="openTripDetailModal(${idx})">상세관리</button>
+              <button class="mini-btn" style="background:#ff4d4d; color:white;" onclick="deleteTrip(${idx})">삭제</button>
+            </div>
+          `;
+          container.appendChild(item);
+        });
+      }
+
+      document.getElementById("trip-list-modal").classList.add("active");
+    };
+
+    window.deleteTrip = function(index) {
+      if (confirm("정말 이 여행 정보를 삭제하시겠습니까?")) {
+        trips.splice(index, 1);
+        saveDataToFirebase();
+        openTripListModal();
+      }
+    };
+
+    /* 여행 상세 (가계부, 코디, 숙소, 준비물) 세팅 */
+    window.openTripDetailModal = function(index) {
+      currentTripIndex = index;
+      const trip = trips[index];
+
+      closeModal("trip-list-modal");
+      document.getElementById("trip-detail-title").innerText = trip.title;
+      document.getElementById("trip-detail-dates").innerText = `${trip.start} ~ ${trip.end}`;
+
+      // 1. 일차별 옷 코디 (자동 날짜 계산)
+      const outfitTbody = document.getElementById("outfit-tbody");
+      outfitTbody.innerHTML = "";
+
+      const startDate = new Date(trip.start);
+      const endDate = new Date(trip.end);
+      const diffDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+      if (!trip.outfits) trip.outfits = {};
+
+      for (let i = 1; i <= diffDays; i++) {
+        const curOutfit = trip.outfits[i] || { munj: "", chaen: "" };
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${i}일차</strong></td>
+          <td><input type="text" class="outfit-munj" data-day="${i}" value="${curOutfit.munj || ''}" placeholder="면지 옷"></td>
+          <td><input type="text" class="outfit-chaen" data-day="${i}" value="${curOutfit.chaen || ''}" placeholder="챈니 옷"></td>
+        `;
+        outfitTbody.appendChild(tr);
+      }
+
+      // 2. 숙소 정보
+      const hotelTbody = document.getElementById("hotel-tbody");
+      hotelTbody.innerHTML = "";
+      if (trip.hotels) {
+        trip.hotels.forEach(h => addHotelRow(h.name, h.period, h.price, h.memo));
+      }
+
+      // 3. 가계부
+      const expenseTbody = document.getElementById("expense-tbody");
+      expenseTbody.innerHTML = "";
+      if (trip.expenses) {
+        trip.expenses.forEach(e => addExpenseRow(e.settled, e.item, e.price));
+      }
+      calculateTotalExpense();
+
+      // 4. 준비물
+      const packingTbody = document.getElementById("packing-tbody");
+      packingTbody.innerHTML = "";
+      if (trip.packings) {
+        trip.packings.forEach(p => addPackingRow(p.checked, p.item));
+      }
+
+      document.getElementById("trip-detail-modal").classList.add("active");
+    };
+
+    /* 동적 행 추가 함수들 */
+    window.addHotelRow = function(name = "", period = "", price = "", memo = "") {
+      const tbody = document.getElementById("hotel-tbody");
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><input type="text" class="hotel-name" value="${name}" placeholder="숙소명"></td>
+        <td><input type="text" class="hotel-period" value="${period}" placeholder="예: 1~2박"></td>
+        <td><input type="text" class="hotel-price" value="${price}" placeholder="가격"></td>
+        <td><input type="text" class="hotel-memo" value="${memo}" placeholder="비고"></td>
+        <td><button class="mini-btn" style="color:#ff4d4d;" onclick="this.closest('tr').remove()">X</button></td>
+      `;
+      tbody.appendChild(tr);
+    };
+
+    window.addExpenseRow = function(settled = false, item = "", price = "") {
+      const tbody = document.getElementById("expense-tbody");
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><input type="checkbox" class="expense-settled" ${settled ? 'checked' : ''}></td>
+        <td><input type="text" class="expense-item" value="${item}" placeholder="항목명"></td>
+        <td><input type="number" class="expense-price" value="${price}" placeholder="0" oninput="calculateTotalExpense()"></td>
+        <td><button class="mini-btn" style="color:#ff4d4d;" onclick="this.closest('tr').remove(); calculateTotalExpense();">X</button></td>
+      `;
+      tbody.appendChild(tr);
+    };
+
+    window.calculateTotalExpense = function() {
+      let total = 0;
+      document.querySelectorAll(".expense-price").forEach(input => {
+        const val = parseInt(input.value) || 0;
+        total += val;
+      });
+      document.getElementById("total-expense").innerText = total.toLocaleString();
+    };
+
+    window.addPackingRow = function(checked = false, item = "") {
+      const tbody = document.getElementById("packing-tbody");
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><input type="checkbox" class="packing-checked" ${checked ? 'checked' : ''}></td>
+        <td><input type="text" class="packing-item" value="${item}" placeholder="준비물"></td>
+        <td><button class="mini-btn" style="color:#ff4d4d;" onclick="this.closest('tr').remove()">X</button></td>
+      `;
+      tbody.appendChild(tr);
+    };
+
+    /* 여행 상세 데이터 저장 */
+    window.saveTripDetails = function() {
+      if (currentTripIndex < 0) return;
+
+      const trip = trips[currentTripIndex];
+
+      // 1. 옷 코디 저장
+      trip.outfits = {};
+      document.querySelectorAll("#outfit-tbody tr").forEach(tr => {
+        const mInput = tr.querySelector(".outfit-munj");
+        const cInput = tr.querySelector(".outfit-chaen");
+        if (mInput && cInput) {
+          const day = mInput.getAttribute("data-day");
+          trip.outfits[day] = {
+            munj: mInput.value.trim(),
+            chaen: cInput.value.trim()
+          };
+        }
+      });
+
+      // 2. 숙소 저장
+      trip.hotels = [];
+      document.querySelectorAll("#hotel-tbody tr").forEach(tr => {
+        const name = tr.querySelector(".hotel-name").value.trim();
+        const period = tr.querySelector(".hotel-period").value.trim();
+        const price = tr.querySelector(".hotel-price").value.trim();
+        const memo = tr.querySelector(".hotel-memo").value.trim();
+        if (name || period || price || memo) {
+          trip.hotels.push({ name, period, price, memo });
+        }
+      });
+
+      // 3. 가계부 저장
+      trip.expenses = [];
+      document.querySelectorAll("#expense-tbody tr").forEach(tr => {
+        const settled = tr.querySelector(".expense-settled").checked;
+        const item = tr.querySelector(".expense-item").value.trim();
+        const price = tr.querySelector(".expense-price").value.trim();
+        if (item || price) {
+          trip.expenses.push({ settled, item, price });
+        }
+      });
+
+      // 4. 준비물 저장
+      trip.packings = [];
+      document.querySelectorAll("#packing-tbody tr").forEach(tr => {
+        const checked = tr.querySelector(".packing-checked").checked;
+        const item = tr.querySelector(".packing-item").value.trim();
+        if (item) {
+          trip.packings.push({ checked, item });
+        }
+      });
+
+      saveDataToFirebase();
+      closeModal("trip-detail-modal");
+      alert("여행 상세 정보가 업데이트되었습니다!");
+    };
+
+    /* 건의함 관리 */
     window.openChatModal = function() {
       renderChatBody();
       document.getElementById("chat-modal").classList.add("active");
@@ -558,22 +865,6 @@
       feedbacks.push({ text: text, time: timeStr });
       input.value = "";
 
-      saveDataToFirebase();
-    };
-
-    window.openTripModal = function() { document.getElementById("trip-modal").classList.add("active"); };
-    window.closeModal = function(id) { document.getElementById(id).classList.remove("active"); };
-
-    window.saveTrip = function() {
-      const title = document.getElementById("trip-title").value.trim();
-      const start = document.getElementById("trip-start").value;
-      const end = document.getElementById("trip-end").value;
-
-      if (!title || !start || !end) return alert("여행 정보 및 날짜를 모두 선택해주세요.");
-
-      trips.push({ title, start, end });
-      document.getElementById("trip-title").value = "";
-      closeModal("trip-modal");
       saveDataToFirebase();
     };
 
